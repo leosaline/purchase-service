@@ -1,6 +1,7 @@
 package com.saline.naton.serviceimp;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,11 @@ public class PurchaseServiceimp implements PurchaseService{
 
 	@Override
 	public Purchase getPurchaseById(Long id) {
-		return purchaseRepository.findById(id).get();
+		Optional<Purchase> optPurchase = purchaseRepository.findById(id);
+		if(optPurchase.isPresent())
+			return optPurchase.get();
+		else
+		    return new Purchase();
 	}
 
 }
