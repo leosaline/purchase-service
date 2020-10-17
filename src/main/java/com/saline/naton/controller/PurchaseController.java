@@ -13,47 +13,54 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.saline.naton.entity.ItemPurchase;
 import com.saline.naton.entity.Purchase;
 import com.saline.naton.service.PurchaseService;
 
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-
 @RestController
 public class PurchaseController {
 	@Autowired
 	PurchaseService purchaseService;
-	
+
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Return list of purchase") })
-	@GetMapping(value="/purchases", produces = "application/json")
+	@GetMapping(value = "/purchases", produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Collection<Purchase>> listPurchase() {
 		return ResponseEntity.ok(this.purchaseService.listPurchase());
 	}
-	
+
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Return list of items purchase") })
+	@GetMapping(value = "/purchases/items", produces = "application/json")
+	@ResponseBody
+	public ResponseEntity<Collection<ItemPurchase>> listItemPurchase() {
+		return ResponseEntity.ok(this.purchaseService.listItemPurchase());
+	}
+
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Return a single purchase created") })
-	@GetMapping(value="/purchase", produces = "application/json", consumes = "application/json")
-	@ResponseBody	
-	public ResponseEntity<Purchase> createPurchase(@RequestBody Purchase purchase){
+	@GetMapping(value = "/purchase", produces = "application/json", consumes = "application/json")
+	@ResponseBody
+	public ResponseEntity<Purchase> createPurchase(@RequestBody Purchase purchase) {
 		return ResponseEntity.ok(this.purchaseService.save(purchase));
 	}
-	
+
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Return a single purchase") })
-	@GetMapping(value="/purchase/{id}", produces = "application/json", consumes = "application/json")
+	@GetMapping(value = "/purchase/{id}", produces = "application/json", consumes = "application/json")
 	@ResponseBody
 	public ResponseEntity<Purchase> getProductById(@PathVariable Long id) {
 		return ResponseEntity.ok(this.purchaseService.getPurchaseById(id));
 	}
-	
+
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Return a new purchase") })
 	@PostMapping(value = "/purchase", produces = "application/json")
-	@CrossOrigin(origins = {"http://localhost:8080", " http://natonfrontend:8080"})
+	@CrossOrigin(origins = { "http://localhost:8080", " http://natonfrontend:8080" })
 	@ResponseBody
 	public ResponseEntity<Purchase> createProduct(@RequestBody Purchase purchase) {
 		purchase.setDatePurchase(new Date());
-		purchase.setUser(1L);
-		
+		purchase.setCustomer(1L);
+
 		return ResponseEntity.ok(this.purchaseService.save(purchase));
 	}
 

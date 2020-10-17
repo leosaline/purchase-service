@@ -8,10 +8,11 @@
 		<version>2.3.2.RELEASE</version>
 		<relativePath />
 	</parent>
+	<groupId>com.saline</groupId>
 	<artifactId>purchase-service</artifactId>
 	<name>purchase-service</name>
 	<description>saline</description>
-	<packaging>jar</packaging>
+	<version>0.0.1</version>
 
 	<dependencies>
 		<dependency>
