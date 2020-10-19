@@ -13,7 +13,7 @@ import com.saline.naton.repository.PurchaseRepository;
 import com.saline.naton.service.PurchaseService;
 
 @Service
-public class PurchaseServiceimp implements PurchaseService {
+public class PurchaseServiceImpl implements PurchaseService {
 	@Autowired
 	PurchaseRepository purchaseRepository;
 
@@ -43,5 +43,4 @@ public class PurchaseServiceimp implements PurchaseService {
 	public Collection<ItemPurchase> listItemPurchase() {
 		return (Collection<ItemPurchase>) itemPurchaseRepo.findAll();
 	}
-
 }

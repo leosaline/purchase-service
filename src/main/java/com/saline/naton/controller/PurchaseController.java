@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +48,7 @@ public class PurchaseController {
 	}
 
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Return a single purchase") })
-	@GetMapping(value = "/purchase/{id}", produces = "application/json", consumes = "application/json")
+	@GetMapping(value = "/purchase/{id}", produces = "application/json", consumes = MediaType.ALL_VALUE)
 	@ResponseBody
 	public ResponseEntity<Purchase> getProductById(@PathVariable Long id) {
 		return ResponseEntity.ok(this.purchaseService.getPurchaseById(id));

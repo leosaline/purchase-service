@@ -1,5 +1,6 @@
 package com.saline.naton.entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,9 +25,13 @@ public class Purchase {
 	private Long id;
 	private Date datePurchase;
 	private Long customer;
+	private BigDecimal totalValue;
 	@OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private List<ItemPurchase> itemsPurchase = new ArrayList<>();
+	@OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@JsonManagedReference
+	private List<Payment> payments = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -58,5 +63,21 @@ public class Purchase {
 
 	public void setCustomer(Long customer) {
 		this.customer = customer;
+	}
+
+	public BigDecimal getTotalValue() {
+		return totalValue;
+	}
+
+	public void setTotalValue(BigDecimal totalValue) {
+		this.totalValue = totalValue;
+	}
+
+	public List<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(List<Payment> payments) {
+		this.payments = payments;
 	}
 }

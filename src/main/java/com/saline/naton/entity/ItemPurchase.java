@@ -1,5 +1,7 @@
 package com.saline.naton.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,6 +24,7 @@ public class ItemPurchase {
 	private Purchase purchase;
 	private Long idProduct;
 	private Long quantity;
+	private BigDecimal price;
 
 	public Long getId() {
 		return id;
@@ -53,5 +56,13 @@ public class ItemPurchase {
 
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 }
