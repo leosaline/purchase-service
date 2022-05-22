@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.saline.naton.enumerator.PaymentTypeEnum;
 
 @Entity
-@Table(name = "PAYMENT", schema = "purchase_service")
+@Table(name = "PAYMENT", schema = "purchaseowner")
 public class Payment {
 
 	@Id

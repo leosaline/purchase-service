@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name = "ITEMPURCHASE", schema = "purchase_service")
+@Table(name = "ITEMPURCHASE", schema = "purchaseowner")
 public class ItemPurchase {
 
 	@Id

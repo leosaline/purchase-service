@@ -1,16 +1,35 @@
+server:
+  port: 9002
+springdoc:
+  swagger-ui:
+    path=/swagger-ui.html
+
+---
 spring:
+  config:
+        activate:
+            on-profile: default
   datasource:
-    url: jdbc:postgresql://postgres-service.naton:5432/naton?useSSL=false
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://postgresql:5432/naton
     username: postgres
     password: postgres
   jpa:
+    hibernate.ddl-auto: create
+    generate-ddl: true
     show-sql: true
-    hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-    properties:
-      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
-      hibernate.temp.use_jdbc_metadata_defaults: false
+    database: postgresql
 
-server:
-  port: 9002
+---
+spring:
+    config:
+        activate:
+            on-profile: dev
+    datasource:
+        url: jdbc:h2:./test;INIT=CREATE SCHEMA IF NOT EXISTS PURCHASEOWNER;MODE=MySQL;
+        username: sa
+        password:
+        driverClassName: org.h2.Driver
+    jpa:
+        hibernate.dialect: org.hibernate.dialect.H2Dialect
+        hibernate.hbm2ddl.auto: create-drop
