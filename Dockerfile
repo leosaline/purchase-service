@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:jre-11.0.11_9-alpine
+FROM openjdk:20-jdk-slim
 VOLUME /tmp
 ADD /target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
