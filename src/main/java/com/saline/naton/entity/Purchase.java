@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "PURCHASE", schema = "purchaseowner")
+@Table(name = "PURCHASE", schema = "nt_purchase")
 public class Purchase {
 
     @Id

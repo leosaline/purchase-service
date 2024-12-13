@@ -8,7 +8,6 @@ import com.saline.naton.service.PurchaseService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
@@ -32,11 +31,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	@Override
 	public Purchase getPurchaseById(Long id) {
-		Optional<Purchase> optPurchase = purchaseRepository.findById(id);
-		if (optPurchase.isPresent())
-			return optPurchase.get();
-		else
-			return new Purchase();
+		return purchaseRepository.findById(id).orElse(new Purchase());
 	}
 
 	@Override
