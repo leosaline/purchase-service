@@ -1,26 +1,26 @@
 package com.saline.naton.serviceimp;
 
-import java.util.Collection;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.saline.naton.entity.ItemPurchase;
 import com.saline.naton.entity.Purchase;
 import com.saline.naton.repository.ItemPurchaseRepository;
 import com.saline.naton.repository.PurchaseRepository;
 import com.saline.naton.service.PurchaseService;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
-	@Autowired
-	PurchaseRepository purchaseRepository;
+	private final PurchaseRepository purchaseRepository;
+	private final ItemPurchaseRepository itemPurchaseRepo;
 
-	@Autowired
-	ItemPurchaseRepository itemPurchaseRepo;
+    public PurchaseServiceImpl(PurchaseRepository purchaseRepository, ItemPurchaseRepository itemPurchaseRepo) {
+        this.purchaseRepository = purchaseRepository;
+        this.itemPurchaseRepo = itemPurchaseRepo;
+    }
 
-	@Override
+    @Override
 	public Collection<Purchase> listPurchase() {
 		return (Collection<Purchase>) purchaseRepository.findAll();
 	}

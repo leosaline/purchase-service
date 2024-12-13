@@ -1,22 +1,22 @@
 package com.saline;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.saline.naton.repository.PaymentRepository;
+import com.saline.naton.repository.PurchaseRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import com.saline.naton.repository.PaymentRepository;
-import com.saline.naton.repository.PurchaseRepository;
-
 @Component
 public class PurchaseGenerator implements ApplicationRunner {
-	@Autowired
-	private PurchaseRepository purchaseRepo;
+	private final PurchaseRepository purchaseRepo;
+	private final PaymentRepository paymentRepo;
 
-	@Autowired
-	private PaymentRepository paymentRepo;
+    public PurchaseGenerator(PurchaseRepository purchaseRepo, PaymentRepository paymentRepo) {
+        this.purchaseRepo = purchaseRepo;
+        this.paymentRepo = paymentRepo;
+    }
 
-	@Override
+    @Override
 	public void run(ApplicationArguments args) throws Exception {
 
 //		for (long i = 0; i < 3000; i++) {

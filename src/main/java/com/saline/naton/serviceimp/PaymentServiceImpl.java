@@ -1,21 +1,22 @@
 package com.saline.naton.serviceimp;
 
-import java.util.Collection;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.saline.naton.entity.Payment;
 import com.saline.naton.repository.PaymentRepository;
 import com.saline.naton.service.PaymentService;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
-	@Autowired
-	PaymentRepository paymentRepo;
+	private final PaymentRepository paymentRepo;
 
-	@Override
+    public PaymentServiceImpl(PaymentRepository paymentRepo) {
+        this.paymentRepo = paymentRepo;
+    }
+
+    @Override
 	public Collection<Payment> listPayment() {
 		return (Collection<Payment>) paymentRepo.findAll();
 	}
